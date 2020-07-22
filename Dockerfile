@@ -3,10 +3,12 @@ COPY target/simple-stuff.war /config/dropins/
 COPY config/server.xml /config/
 COPY config/server.env /config/
 
-RUN mkdir -p /my-special-folder && \
-    chgrp -R 0 /my-special-folder && \
-    chmod -R g=u /my-special-folder
+RUN useradd spuser && \
+    mkdir -p /opt/my-special-folder && \
+    chown -R spuser /opt/my-special-folder
+    chgrp -R 0 /opt/my-special-folder && \
+    chmod -R g=u /opt/my-special-folder
 
 COPY Dockerfile /my-special-folder/
 
-USER 1001
+USER spuser
