@@ -3,7 +3,7 @@ COPY target/simple-stuff.war /config/dropins/
 COPY config/server.xml /config/
 COPY config/server.env /config/
 
-RUN useradd spuser && \
+RUN adduser spuser && \
     mkdir -p /opt/my-special-folder && \
     chown -R spuser /opt/my-special-folder
     chgrp -R 0 /opt/my-special-folder && \
